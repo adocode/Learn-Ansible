@@ -1,12 +1,38 @@
 # 6. 更大的舞台(1)：组织多个文件以及 Role
 
+- [6. 更大的舞台(1)：组织多个文件以及 Role](#6-更大的舞台1组织多个文件以及-role)
+  - [6.1 使用 include 还是 import？](#61-使用-include-还是-import)
+  - [6.2 组织 task](#62-组织-task)
+    - [6.2.1 在循环中 include 文件](#621-在循环中-include-文件)
+  - [6.3 组织 handler](#63-组织-handler)
+  - [6.4 组织变量](#64-组织变量)
+    - [6.4.1 vars_files](#641-vars_files)
+    - [6.4.2 include_vars](#642-include_vars)
+    - [6.4.3 –extra-vars 选项](#643-extra-vars-选项)
+  - [6.5 组织 playbook 文件](#65-组织-playbook-文件)
+  - [6.6 更为规范的组织方式：Role](#66-更为规范的组织方式role)
+    - [6.6.1 Role 文件结构一览](#661-role-文件结构一览)
+    - [6.6.2 定义 Role 的 task](#662-定义-role-的-task)
+    - [6.6.3 定义 Role 的 handler](#663-定义-role-的-handler)
+    - [6.6.4 定义 Role 的变量](#664-定义-role-的变量)
+    - [6.6.5 Role 用到的外部文件和模板文件](#665-role-用到的外部文件和模板文件)
+    - [6.6.6 Role 中定义的模块和插件](#666-role-中定义的模块和插件)
+    - [6.6.7 定义 Role 的依赖关系](#667-定义-role-的依赖关系)
+    - [6.6.8 动手写一个 Role](#668-动手写一个-role)
+  - [6.7 使用 Role：roles、include_role 和 import_role](#67-使用-rolerolesinclude_role-和-import_role)
+  - [6.8 查看任务和打标签 tags](#68-查看任务和打标签-tags)
+  - [6.9 Ansible Galaxy 和 Collection](#69-ansible-galaxy-和-collection)
+    - [Ansible Collection](#ansible-collection)
+  - [6.10 playbook 的执行顺序](#610-playbook-的执行顺序)
+    - [6.10.1 playbook 解析、动态加载和静态加载](#6101-playbook-解析动态加载和静态加载)
+
 在上一篇文章的最后，我将初始化配置服务器的多个任务组合到了单个 playbook 中，这种组织方式的可读性和可维护性都很差，整个 playbook 看上去也非常凌乱。如图：
 
-<img src="images/Chapter06-1/1577701433835.png" alt="img"  />
+<img src="images/Chapter06/1577701433835.png" alt="img"  />
 
 所以，我又将各类任务分类后单独存放在各自的 playbook 中，然后在入口 playbook 文件中使用 import_playbook 指令来组织这些 playbook，如此一来，各类任务分门别类且实现了自治，维护起来更为清晰、方便。如图：
 
-![img](images/Chapter06-1/1577701544968.png)
+![img](images/Chapter06/1577701544968.png)
 
 Ansible 中除了可以将 play 进行分类自治，还提供了其它几种内容的组织方式，可组织的内容包括：
 
@@ -539,7 +565,7 @@ $ tree -L 2
 
 通过下面的图，应能帮助理解 Role 的角色。
 
-![img](images/Chapter06-1/1577350407650.png)
+![img](images/Chapter06/1577350407650.png)
 
 既然 Role 是一个完整的任务体系，拥有 Role 之后就可以去使用它，或者也可以分发给别人使用，但是一个 Role 仅仅只是目录而已，如何去使用这个 Role 呢？
 

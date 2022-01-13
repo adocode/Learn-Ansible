@@ -1,5 +1,20 @@
 # 4. Ansible 的灵魂：playbook
 
+- [4. Ansible 的灵魂：playbook](#4-ansible-的灵魂playbook)
+  - [4.1 playbook、play 和 task 的关系](#41-playbookplay-和-task-的关系)
+  - [4.2 playbook 的语法：YAML](#42-playbook-的语法yaml)
+    - [4.2.1 对象](#421-对象)
+    - [4.2.2 数组](#422-数组)
+    - [4.2.3 字典](#423-字典)
+    - [4.2.4 复合结构](#424-复合结构)
+    - [4.2.5 字符串续行](#425-字符串续行)
+    - [4.2.6 空值](#426-空值)
+    - [4.2.7 YAML 中的单双引号和转义](#427-yaml-中的单双引号和转义)
+  - [4.3 playbook 的写法](#43-playbook-的写法)
+  - [4.4 playbook 模块参数的传递方式](#44-playbook-模块参数的传递方式)
+  - [4.5 指定执行 play 的目标主机](#45-指定执行-play-的目标主机)
+  - [4.6 默认的任务执行策略](#46-默认的任务执行策略)
+
 ansible 命令每次只能执行一个任务，这种运行方式称为 Ad-hoc(点对点模式)，不考虑 Ansible 特性的话，这功能比 ssh 远程执行命令还要弱。
 
 所以，Ansible 靠 ansible 命令是撑不起自动化管理这把大伞的，Ansible 真正强大的是 playbook，它才是 Ansible 撬动自动化管理的结实杠杆。

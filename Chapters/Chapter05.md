@@ -1,5 +1,28 @@
 # 5. Ansible 力量初显：批量初始化服务器
 
+- [5. Ansible 力量初显：批量初始化服务器](#5-ansible-力量初显批量初始化服务器)
+  - [5.1 批量初始化服务器案例](#51-批量初始化服务器案例)
+  - [5.2 Ansible 配置 SSH 密钥认证](#52-ansible-配置-ssh-密钥认证)
+    - [5.2.1 方案一：命令行改写为 playbook](#521-方案一命令行改写为-playbook)
+      - [command、shell、raw 和 script 模块](#commandshellraw-和-script-模块)
+      - [connection 和 delegate_to 指令](#connection-和-delegate_to-指令)
+    - [5.2.2 方案二：使用 authorized_key 模块](#522-方案二使用-authorized_key-模块)
+      - [lookup()或 query()读取外部数据](#lookup或-query读取外部数据)
+  - [5.3 配置主机名](#53-配置主机名)
+    - [5.3.1 vars 设置变量](#531-vars-设置变量)
+    - [5.3.2 when 条件判断](#532-when-条件判断)
+    - [5.3.3 loop 循环](#533-loop-循环)
+  - [5.4 互相添加 DNS 解析记录](#54-互相添加-dns-解析记录)
+    - [5.4.1 lineinfile 模块](#541-lineinfile-模块)
+    - [5.4.2 play_hosts 和 hostvars 变量](#542-play_hosts-和-hostvars-变量)
+  - [5.5 配置 yum 镜像源并安装软件](#55-配置-yum-镜像源并安装软件)
+  - [5.6 时间同步](#56-时间同步)
+  - [5.7 关闭 Selinux](#57-关闭-selinux)
+  - [5.8 配置防火墙](#58-配置防火墙)
+  - [5.9 远程修改 sshd 配置文件并重启](#59-远程修改-sshd-配置文件并重启)
+    - [5.9.1 notify 和 handlers](#591-notify-和-handlers)
+  - [5.10 整合所有任务到单个 playbook 中](#510-整合所有任务到单个-playbook-中)
+
 ## 5.1 批量初始化服务器案例
 
 既然前面已经学完了必要理论基础知识：inventory 和 playbook，现在或许是自己上手来试试 Ansible 如何进行批量配置管理的好机会。

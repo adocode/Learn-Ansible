@@ -1,12 +1,16 @@
 # 1. 学习不迷茫：Ansible 要如何学至精通
 
+[1. 学习不迷茫：Ansible 要如何学至精通](#1-学习不迷茫ansible-要如何学至精通)
+  - [1.1 Ansible 基本介绍](#11-ansible-基本介绍)
+  - [1.2 如何学习并学好 Ansible](#12-如何学习并学好-ansible)
+
 ## 1.1 Ansible 基本介绍
 
-​ Ansible 是一个基于 Python 开发的配置管理和应用部署工具，现在也在自动化管理领域大放异彩。它融合了众多老牌运维工具的优点，Pubbet 和 Saltstack 能实现的功能，Ansible 基本上都可以实现。
+ Ansible 是一个基于 Python 开发的配置管理和应用部署工具，现在也在自动化管理领域大放异彩。它融合了众多老牌运维工具的优点，Pubbet 和 Saltstack 能实现的功能，Ansible 基本上都可以实现。
 
-​ Ansible 能批量配置、部署、管理一大堆的主机。比如以前需要切换到每个主机上执行的一或多个操作，使用 Ansible 只需在固定的一台 Ansible 控制节点上去完成所有主机的操作。
+ Ansible 能批量配置、部署、管理一大堆的主机。比如以前需要切换到每个主机上执行的一或多个操作，使用 Ansible 只需在固定的一台 Ansible 控制节点上去完成所有主机的操作。
 
-​ 例如，下面的操作(看不懂没关系)表示将 Ansible 所在主机上的/etc/my.cnf 文件拷贝到 mysql 主机组内的所有主机的/etc/目录下，mysql 主机组可以是单台主机，也可以是很多台主机，这可以由用户自己来定义。
+ 例如，下面的操作(看不懂没关系)表示将 Ansible 所在主机上的/etc/my.cnf 文件拷贝到 mysql 主机组内的所有主机的/etc/目录下，mysql 主机组可以是单台主机，也可以是很多台主机，这可以由用户自己来定义。
 
 ```shell
 $ ansible mysql -m copy -a "src=/etc/my.cnf dest=/etc/"
