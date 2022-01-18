@@ -35,7 +35,7 @@
 
 ## 7.2 创建 Role 并提供 inventory
 
-从此处开始，使用https://github.com/malongshuai/ansible-column.git中的”7th/myroles”目录。
+从此处开始，使用[malongshuai/ansible-column](https://github.com/malongshuai/ansible-column/tree/master/7th)仓库中的”7th/myroles”目录。
 
 我先将所有功能集中在单个 Role 中，后面会抽离、重整各类功能到不同的 Role 中。
 
@@ -549,7 +549,7 @@ server {
   when: "'php' in group_names"
 ```
 
-之所以不友好是因为创建`php`相关目录本该是`nginx`节点上触发的任务，但此处却是在 php 节点执行任务时创建的，假如 play 的 hosts 指令中没有选中 php 主机组呢？换句话说，` nginx``节点 `触发的任务却脱离了`nginx`。
+之所以不友好是因为创建`php`相关目录本该是`nginx`节点上触发的任务，但此处却是在 php 节点执行任务时创建的，假如 play 的 hosts 指令中没有选中 php 主机组呢？换句话说，` nginx`节点 触发的任务却脱离了`nginx`。
 
 更好的方式是使用之前曾提到过的 delegate_to 指令进行任务委托，在 nginx 节点执行任务到此任务时，临时委托给 php 节点去创建 php 目录。
 
@@ -646,7 +646,7 @@ when: inventory_hostname == play_hosts[0]
 
 所以，在测试之前应当先启动 nginx。这里我使用了 meta: flush_handlers 任务，当执行到该任务时，它会立即去执行当前阶段已经触发的所有 handler 任务。注意，这是改变 Ansible 执行流程的一种方式，必须掌握。
 
-关于 meta，它是 Ansible 中一个非常神奇的模块，它的功能都直接作用在 Ansible 本身，虽然提供的功能不算多，但却能解决一些比较棘手的需求，比如示例中所用的 flush_handlers 可以立即去执行已经触发的 handler，再比如 meta: end_play 可以立即终止当前 play 并进入下一个 play，也就是说，当前 play 中剩下的任务不执行了，这也改变了任务的执行流程。此外还有几个功能，各位可参考官方手册：https://docs.ansible.com/ansible/latest/modules/meta_module.html去了解了解，以备不时之需。
+关于 meta，它是 Ansible 中一个非常神奇的模块，它的功能都直接作用在 Ansible 本身，虽然提供的功能不算多，但却能解决一些比较棘手的需求，比如示例中所用的 flush_handlers 可以立即去执行已经触发的 handler，再比如 meta: end_play 可以立即终止当前 play 并进入下一个 play，也就是说，当前 play 中剩下的任务不执行了，这也改变了任务的执行流程。此外还有几个功能，各位可参考官方手册 [meta module](https://docs.ansible.com/ansible/latest/modules/meta_module.html) 去了解了解，以备不时之需。
 
 最后，还有一个注意事项需要提醒一下，上面的测试任务是在 nginx 启动后立即执行的，对于这里的 nginx reload 来说这没什么问题，但对于某些启动较慢的服务，在启动任务后加上一个延迟行为，这样的效果是否会更佳？Ansible 提供了 wait_for 模块和 pause 模块，前者用于等待指定的条件发生后才继续执行后续任务，后者用于等待指定的超时时间，它们用法都非常简单，各位可去看看官方手册，后续的文章中可能也有用上它们的机会。
 
