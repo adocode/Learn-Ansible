@@ -1,8 +1,8 @@
 # Learn-Ansible
 
-本仓库仅用于在个人学习 ansible 的记录，不做任何商业用途
+本仓库仅用于个人学习 ansible 的记录，不做任何商业用途
 
-所有内容来源于博客[骏马金龙](https://www.junmajinlong.com/ansible/index/)
+所有内容来源于博客 [骏马金龙](https://www.junmajinlong.com/ansible/index/), 有细微改动
 
 ## 开始阅读
 
